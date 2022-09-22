@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:login_seventh/app/core/data/http/http.dart';
+import 'package:login_seventh/app/modules/home/home_repository.dart';
 import 'home_controller.dart';
 
 import 'home_page.dart';
@@ -6,7 +8,13 @@ import 'home_page.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => HomeController()),
+    Bind.lazySingleton(
+      (i) => HomeController(
+        HomeRepositoryImp(
+          HttpClientImp(),
+        ),
+      ),
+    ),
   ];
 
   @override
