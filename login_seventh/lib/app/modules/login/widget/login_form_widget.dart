@@ -26,32 +26,15 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            offset: Offset(5, 5),
-            blurRadius: 10,
-          ),
-        ],
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(70),
-          topLeft: Radius.circular(70),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: SingleChildScrollView(
         child: Form(
           key: controller.formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomInputWidget(
-                hint: 'Username',
-                initialValue: 'candidato-seventh',
+                textLabel: 'Username',
                 controller: controller.userNameController,
                 onChanged: (value) {
                   controller.loginModel.username = value;
@@ -64,8 +47,8 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
               CustomInputWidget(
-                hint: 'Senha',
-                initialValue: '8n5zSrYq',
+                textLabel: 'Password',
+                obscure: controller.obscureValue,
                 keyboardType: TextInputType.text,
                 controller: controller.passwordController,
                 onChanged: (value) {
@@ -73,12 +56,19 @@ class _LoginFormState extends State<LoginForm> {
                 },
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Informe sua senha';
+                    return 'Informe o password';
                   }
                   return null;
                 },
+                suffixIcon: IconButton(
+                  onPressed: () => controller.changeObscure(),
+                  icon: Icon(
+                    controller.obscureIcon,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 5),
               controller.isLoading
                   ? LoadingComponent()
                   : GestureDetector(
@@ -98,8 +88,8 @@ class _LoginFormState extends State<LoginForm> {
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                                 colors: [
-                                  Color(0xFF29B6F6),
-                                  Color(0xFF81D4FA),
+                                  Color(0xFFB9F6CA),
+                                  Color(0xFF00E676),
                                 ])),
                         child: const Icon(
                           color: Colors.white,
@@ -110,10 +100,10 @@ class _LoginFormState extends State<LoginForm> {
                       onTap: () async {
                         FocusManager.instance.primaryFocus?.unfocus();
                         if (controller.formKey.currentState!.validate()) {
-                          final response = await controller.login(
-                            context, 'candidato-seventh', '8n5zSrYq',
-                            //controller.loginModel.username!,
-                            //controller.loginModel.password!,
+                          await controller.login(
+                            context,
+                            controller.loginModel.username!,
+                            controller.loginModel.password!,
                           );
                         }
                       },

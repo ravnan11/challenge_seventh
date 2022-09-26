@@ -1,10 +1,11 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:login_seventh/app/core/widgets/logading_widget.dart';
 import 'package:video_player/video_player.dart';
 
 class ChewieListItem extends StatefulWidget {
-  final VideoPlayerController videoPlayerController;
   final bool looping;
+  final VideoPlayerController videoPlayerController;
 
   const ChewieListItem({
     required this.videoPlayerController,
@@ -22,15 +23,12 @@ class _ChewieListItemState extends State<ChewieListItem> {
   @override
   void initState() {
     super.initState();
-    // Wrapper on top of the videoPlayerController
     _chewieController = ChewieController(
       videoPlayerController: widget.videoPlayerController,
-      aspectRatio: 16 / 9,
-      // Prepare the video to be played and display the first frame
+      autoPlay: true,
       autoInitialize: true,
+      aspectRatio: 16 / 9,
       looping: widget.looping,
-      // Errors can occur for example when trying to play a video
-      // from a non-existent URL
       errorBuilder: (context, errorMessage) {
         return Center(
           child: Text(
@@ -44,18 +42,19 @@ class _ChewieListItemState extends State<ChewieListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Chewie(
-        controller: _chewieController,
-      ),
-    );
+    return _chewieController != null
+        ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Chewie(
+              controller: _chewieController,
+            ),
+          )
+        : LoadingComponent();
   }
 
   @override
   void dispose() {
     super.dispose();
-    // IMPORTANT to dispose of all the used resources
     widget.videoPlayerController.dispose();
     _chewieController.dispose();
   }

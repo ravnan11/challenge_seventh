@@ -11,8 +11,6 @@ class HomeRepositoryImp implements HomeRepository {
   @override
   Future getVideo({required String token}) async {
     try {
-      print('valor do token');
-      print(token);
       final httpResponse = await httpClient.request(
         'http://mobiletest.seventh.com.br/video/bunny.mp4',
         method: 'get',

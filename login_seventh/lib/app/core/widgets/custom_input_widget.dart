@@ -15,6 +15,7 @@ class CustomInputWidget extends StatelessWidget {
   final TextEditingController? controller;
   final Function(String)? onSubmitted;
   final String? initialValue;
+  final String? textLabel;
 
   CustomInputWidget({
     Key? key,
@@ -30,6 +31,7 @@ class CustomInputWidget extends StatelessWidget {
     this.requestFocus,
     this.hint,
     this.initialValue,
+    this.textLabel,
   }) : super(key: key);
 
   @override
@@ -40,11 +42,9 @@ class CustomInputWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-            ),
+            decoration: BoxDecoration(),
             child: TextFormField(
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
               keyboardType: keyboardType,
               initialValue: initialValue,
@@ -61,42 +61,43 @@ class CustomInputWidget extends StatelessWidget {
                 }
               },
               decoration: InputDecoration(
+                floatingLabelBehavior: FloatingLabelBehavior.always,
                 isDense: true,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 24, vertical: 15),
+                labelText: textLabel,
                 hintText: hint,
+                suffixIcon: suffixIcon,
+                icon: icon,
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                ),
                 errorMaxLines: 1,
+                filled: true,
                 errorStyle: TextStyle(
                   color: Colors.red,
                   fontSize: 10,
                   fontFamily: 'Roboto',
                 ),
                 hintStyle: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 16,
                   fontFamily: 'Roboto',
                 ),
-                border: InputBorder.none,
+                border: OutlineInputBorder(borderSide: BorderSide()),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
                   borderSide: BorderSide(
                     color: Colors.black,
                     width: 1,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
                   borderSide: BorderSide(
-                    color: Colors.black,
+                    color: Colors.white,
                     width: 1.0,
                   ),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.circular(30.0),
                 ),
-                disabledBorder: InputBorder.none,
-                filled: true,
               ),
             ),
           ),

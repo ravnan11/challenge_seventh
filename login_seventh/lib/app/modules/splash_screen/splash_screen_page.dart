@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:login_seventh/app/core/image/app_images.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
@@ -29,8 +30,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         shape: BoxShape.rectangle,
         endRadius: 600.0,
         child: Image.asset(
-          'assets/images/logo.png',
-          height: 300,
+          AppImages.logotipo2,
+          height: 500,
         ),
       ),
     );

@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.login_seventh">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
+        android:label="Login Seventh"
         android:usesCleartextTraffic="true"
-        android:label="login_seventh"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

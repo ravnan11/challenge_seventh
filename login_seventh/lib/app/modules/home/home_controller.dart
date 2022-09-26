@@ -12,9 +12,7 @@ class HomeController extends ChangeNotifier {
   final formKey = GlobalKey;
 
   final HomeRepository repository;
-  HomeController(this.repository) {
-    getVideo();
-  }
+  HomeController(this.repository);
 
   getVideo() async {
     isLoading = true;

@@ -14,6 +14,8 @@ class LoginController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   String responseToken = "";
   bool isLoading = false;
+  bool obscureValue = true;
+  IconData obscureIcon = Icons.visibility_off;
 
   final LoginRepository repository;
   LoginController(this.repository);
@@ -54,5 +56,15 @@ class LoginController extends ChangeNotifier {
 
   void logout() {
     Modular.to.navigate('/login/');
+  }
+
+  changeObscure() {
+    obscureValue = !obscureValue;
+    if (obscureValue) {
+      obscureIcon = Icons.visibility_off;
+    } else {
+      obscureIcon = Icons.visibility;
+    }
+    notifyListeners();
   }
 }
