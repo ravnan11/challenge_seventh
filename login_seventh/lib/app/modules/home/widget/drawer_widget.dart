@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:login_seventh/app/core/image/app_images.dart';
-import 'package:login_seventh/app/modules/login/login_controller.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -14,7 +13,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final LoginController loginController = Modular.get();
 
     return Drawer(
       width: size.width * .7,
@@ -43,7 +41,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'FLASH COURIER',
+                            'SEVENTH',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: '',
@@ -89,17 +87,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             thickness: 0.2,
             color: Colors.white,
             height: 1,
-          ),
-          ListTile(
-            title: Text(
-              'Sair',
-              style: TextStyle(
-                color: Colors.red,
-              ),
-            ),
-            onTap: () {
-              loginController.logout();
-            },
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:login_seventh/app/core/widgets/logading_widget.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:login_seventh/app/modules/login/login_controller.dart';
 import 'package:video_player/video_player.dart';
 
 class ChewieListItem extends StatefulWidget {
@@ -19,10 +20,12 @@ class ChewieListItem extends StatefulWidget {
 
 class _ChewieListItemState extends State<ChewieListItem> {
   late ChewieController _chewieController;
+  final LoginController loginController = Modular.get();
 
   @override
   void initState() {
     super.initState();
+
     _chewieController = ChewieController(
       videoPlayerController: widget.videoPlayerController,
       autoPlay: true,
@@ -42,14 +45,12 @@ class _ChewieListItemState extends State<ChewieListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return _chewieController != null
-        ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Chewie(
-              controller: _chewieController,
-            ),
-          )
-        : LoadingComponent();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Chewie(
+        controller: _chewieController,
+      ),
+    );
   }
 
   @override

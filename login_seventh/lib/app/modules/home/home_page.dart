@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:login_seventh/app/core/widgets/auth_exception.dart';
 import 'package:login_seventh/app/core/widgets/logading_widget.dart';
 import 'package:login_seventh/app/modules/home/home_controller.dart';
 import 'package:login_seventh/app/modules/home/widget/appbar_widget.dart';

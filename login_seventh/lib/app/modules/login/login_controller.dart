@@ -54,10 +54,6 @@ class LoginController extends ChangeNotifier {
     }
   }
 
-  void logout() {
-    Modular.to.navigate('/login/');
-  }
-
   changeObscure() {
     obscureValue = !obscureValue;
     if (obscureValue) {
